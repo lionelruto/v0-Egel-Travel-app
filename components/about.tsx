@@ -31,7 +31,7 @@ export function About() {
           <div className="relative">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
               <Image
-                src="/images/about-team.jpg"
+                src="./images/about-team.jpg"
                 alt="Équipe EGEL TRAVEL"
                 fill
                 className="object-cover"

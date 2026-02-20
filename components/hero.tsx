@@ -11,7 +11,7 @@ export function Hero() {
     >
       {/* Background Image */}
       <Image
-        src="/images/hero-travel.jpg"
+        src="./images/hero-travel.jpg"
         alt="Destination de voyage paradisiaque"
         fill
         className="object-cover"

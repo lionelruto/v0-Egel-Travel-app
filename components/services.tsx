@@ -8,7 +8,7 @@ const services = [
     title: "Billetterie aérienne",
     description:
       "Vente de billets pour toutes destinations avec accompagnement personnalisé. Nous comparons les meilleures offres pour vous garantir les tarifs les plus compétitifs.",
-    image: "/images/service-flight.jpg",
+    image: "./images/service-flight.jpg",
     features: [
       "Toutes compagnies aériennes",
       "Meilleurs tarifs garantis",
@@ -20,7 +20,7 @@ const services = [
     title: "Assurance voyage",
     description:
       "Couverture santé, annulation, bagages et assistance. Voyagez en toute sérénité avec nos solutions d'assurance complètes et adaptées.",
-    image: "/images/service-insurance.jpg",
+    image: "./images/service-insurance.jpg",
     features: [
       "Couverture santé internationale",
       "Assurance annulation",
@@ -32,7 +32,7 @@ const services = [
     title: "Location de véhicules",
     description:
       "Avec ou sans chauffeur pour déplacements professionnels ou personnels. Large gamme de véhicules adaptés à tous vos besoins.",
-    image: "/images/service-car.jpg",
+    image: "./images/service-car.jpg",
     features: [
       "Avec ou sans chauffeur",
       "Large gamme de véhicules",
@@ -44,7 +44,7 @@ const services = [
     title: "Immigration & Assistance",
     description:
       "Accompagnement légal pour visas et démarches administratives, 100% conforme à la loi. Notre équipe d'experts simplifie vos procédures.",
-    image: "/images/service-immigration.jpg",
+    image: "./images/service-immigration.jpg",
     features: [
       "Demande de visa",
       "Démarches administratives",
