@@ -1,0 +1,131 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* EGEL TRAVEL Brand Colors */
+  /* Bleu nuit: #02162e  |  Bleu ciel: #5DCCF9  |  White: #ffffff */
+  --background: #ffffff;
+  --foreground: #02162e;
+  --card: #ffffff;
+  --card-foreground: #02162e;
+  --popover: #ffffff;
+  --popover-foreground: #02162e;
+  --primary: #02162e;
+  --primary-foreground: #ffffff;
+  --secondary: #f0f9ff;
+  --secondary-foreground: #02162e;
+  --muted: #f0f9ff;
+  --muted-foreground: #4a6a82;
+  --accent: #5DCCF9;
+  --accent-foreground: #02162e;
+  --destructive: #ef4444;
+  --destructive-foreground: #ef4444;
+  --border: #d0e7f5;
+  --input: #d0e7f5;
+  --ring: #5DCCF9;
+  --chart-1: #02162e;
+  --chart-2: #5DCCF9;
+  --chart-3: #0a3a5e;
+  --chart-4: #8ee0ff;
+  --chart-5: #d0e7f5;
+  --radius: 0.625rem;
+  --sidebar: #02162e;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #5DCCF9;
+  --sidebar-primary-foreground: #02162e;
+  --sidebar-accent: #0a3a5e;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #0a3a5e;
+  --sidebar-ring: #5DCCF9;
+}
+
+.dark {
+  --background: #02162e;
+  --foreground: #f0f9ff;
+  --card: #0a2540;
+  --card-foreground: #f0f9ff;
+  --popover: #0a2540;
+  --popover-foreground: #f0f9ff;
+  --primary: #5DCCF9;
+  --primary-foreground: #02162e;
+  --secondary: #0a2540;
+  --secondary-foreground: #f0f9ff;
+  --muted: #0a2540;
+  --muted-foreground: #8eb8d4;
+  --accent: #5DCCF9;
+  --accent-foreground: #02162e;
+  --destructive: #ef4444;
+  --destructive-foreground: #ef4444;
+  --border: #0a3a5e;
+  --input: #0a3a5e;
+  --ring: #5DCCF9;
+  --chart-1: #5DCCF9;
+  --chart-2: #8ee0ff;
+  --chart-3: #02162e;
+  --chart-4: #0a3a5e;
+  --chart-5: #d0e7f5;
+  --sidebar: #010e1d;
+  --sidebar-foreground: #f0f9ff;
+  --sidebar-primary: #5DCCF9;
+  --sidebar-primary-foreground: #02162e;
+  --sidebar-accent: #0a2540;
+  --sidebar-accent-foreground: #f0f9ff;
+  --sidebar-border: #0a3a5e;
+  --sidebar-ring: #5DCCF9;
+}
+
+@theme inline {
+  --font-sans: 'Inter', 'Inter Fallback', sans-serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
