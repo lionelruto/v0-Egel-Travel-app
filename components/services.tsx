@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Plane, Shield, Car, FileText, ArrowRight } from "lucide-react";
+import { Plane, Shield, Car, FileText, ArrowRight, Calendar1, House, Map } from "lucide-react";
 import Link from "next/link";
 
 const services = [
@@ -49,6 +49,48 @@ const services = [
       "Demande de visa",
       "Démarches administratives",
       "100% conforme à la loi",
+    ],
+  },
+  {
+    icon: Map,
+    title: "Service tourisme & Voyages",
+    description:
+      "Nous concevons des experiences de voyage sur mesure adaptees aux particuliers, entreprises et clients VIP.",
+    image: "./images/tourisme-voyage.jpeg",
+    features: [
+      "Reservation de billets d'avions (National & international)",
+      "Organisation des sejours personaliés",
+      "voyages de groupe",
+      "Assistance visa et formalites administratives",
+      "Sejours VIP et premium",
+    ],
+  },
+  {
+    icon: House,
+    title: "Service Immbobilier",
+    description:"Nous accompagnons nos clients dans la recherche, l’acquisition, la location et la valorisation de biens immobiliers.",
+    image: "./images/service-immobilier.jpeg",
+    features: [
+      "Vente et achat de biens immobiliers",
+      "Location courte et longue durée",
+      "gestion locative",
+      "Mise en relation avec investisseurs",
+      "Conseil en investissement immobilier",
+      "Recherche de biens sur mesure",
+    ],
+  },
+    {
+    icon: Calendar1,
+    title: "Service Evenementiel",
+    description: "Nous creons des evenements élegants, impactants et parfaitement orchestrés.",
+    image: "./images/service-evenementiel.jpg",
+    features: [
+      "Evenements d'entreprise",
+      "Lancements de produits",
+      "Seminaires et conférences",
+      "Soirées privées", 
+      "Mariages et celebrations",
+      "Evenements premiums & VIP"
     ],
   },
 ];
@@ -109,7 +151,7 @@ export function Services() {
                   ))}
                 </ul>
                 <Link
-                  href="#devis"
+                  href="/devis"
                   className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-accent transition-colors hover:text-accent/80"
                 >
                   Demander un devis
