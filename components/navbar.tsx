@@ -6,11 +6,11 @@ import { Menu, X, Plane } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
-  { href: "#accueil", label: "Accueil" },
-  { href: "#a-propos", label: "A propos" },
-  { href: "#services", label: "Services" },
+  { href: "/#accueil", label: "Accueil" },
+  { href: "/#a-propos", label: "A propos" },
+  { href: "/#services", label: "Services" },
   { href: "/devis", label: "Devis" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export function Navbar() {
@@ -20,7 +20,7 @@ export function Navbar() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo */}
-        <Link href="#accueil" className="flex items-center gap-2">
+        <Link href="/#accueil" className="flex items-center gap-2">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary">
             <Plane className="h-5 w-5 text-primary-foreground" />
           </div>
