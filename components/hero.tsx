@@ -38,7 +38,7 @@ export function Hero() {
             size="lg"
             className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold text-base px-8"
           >
-            <Link href="#devis">
+            <Link href="/devis">
               Demander un devis
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
