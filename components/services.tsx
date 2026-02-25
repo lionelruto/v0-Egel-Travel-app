@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import {
   Plane,
@@ -117,6 +117,8 @@ function ServiceCard({
   index: number;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const el = cardRef.current;
@@ -125,12 +127,11 @@ function ServiceCard({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.style.transitionDelay = `${index * 120}ms`;
-          el.classList.add("service-visible");
+          setTimeout(() => setIsVisible(true), index * 150);
           observer.unobserve(el);
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.1 }
     );
 
     observer.observe(el);
@@ -140,41 +141,107 @@ function ServiceCard({
   return (
     <div
       ref={cardRef}
-      className="service-card group overflow-hidden rounded-xl border border-border bg-card transition-all duration-700 hover:shadow-lg"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="group overflow-hidden rounded-xl border border-border bg-card transition-all duration-700 ease-out"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible
+          ? "translateY(0) scale(1)"
+          : "translateY(50px) scale(0.95)",
+        transitionDelay: `${index * 100}ms`,
+        boxShadow: isHovered
+          ? "0 20px 40px -12px rgba(2, 22, 46, 0.15), 0 0 0 1px rgba(93, 204, 249, 0.2)"
+          : "none",
+      }}
     >
+      {/* Image section with parallax-like zoom */}
       <div className="relative h-52 overflow-hidden">
         <Image
           src={service.image}
           alt={service.title}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover transition-transform duration-700 ease-out"
+          style={{
+            transform: isHovered ? "scale(1.1)" : "scale(1)",
+          }}
         />
-        <div className="absolute inset-0 bg-primary/40" />
-        <div className="absolute bottom-4 left-4 flex h-12 w-12 items-center justify-center rounded-lg bg-accent transition-transform duration-500 group-hover:scale-110">
+        <div
+          className="absolute inset-0 transition-all duration-500"
+          style={{
+            background: isHovered
+              ? "linear-gradient(to top, rgba(2,22,46,0.7) 0%, rgba(2,22,46,0.2) 100%)"
+              : "rgba(2,22,46,0.4)",
+          }}
+        />
+        {/* Icon badge with bounce-in */}
+        <div
+          className="absolute bottom-4 left-4 flex h-12 w-12 items-center justify-center rounded-lg bg-accent transition-all duration-500 ease-out"
+          style={{
+            transform: isVisible
+              ? isHovered
+                ? "scale(1.15) rotate(-3deg)"
+                : "scale(1) rotate(0deg)"
+              : "scale(0) rotate(-45deg)",
+            transitionDelay: isVisible ? `${index * 100 + 300}ms` : "0ms",
+          }}
+        >
           <service.icon className="h-6 w-6 text-accent-foreground" />
         </div>
       </div>
+
+      {/* Content with staggered feature reveal */}
       <div className="p-6">
-        <h3 className="text-xl font-bold text-card-foreground">
+        <h3
+          className="text-xl font-bold text-card-foreground transition-all duration-500"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateX(0)" : "translateX(-20px)",
+            transitionDelay: `${index * 100 + 200}ms`,
+          }}
+        >
           {service.title}
         </h3>
-        <p className="mt-2 text-muted-foreground leading-relaxed">
+        <p
+          className="mt-2 text-muted-foreground leading-relaxed transition-all duration-500"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateX(0)" : "translateX(-20px)",
+            transitionDelay: `${index * 100 + 300}ms`,
+          }}
+        >
           {service.description}
         </p>
         <ul className="mt-4 flex flex-col gap-2">
-          {service.features.map((feature) => (
+          {service.features.map((feature, featureIndex) => (
             <li
               key={feature}
-              className="flex items-center gap-2 text-sm text-card-foreground"
+              className="flex items-center gap-2 text-sm text-card-foreground transition-all duration-500"
+              style={{
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? "translateX(0)" : "translateX(-15px)",
+                transitionDelay: `${index * 100 + 400 + featureIndex * 80}ms`,
+              }}
             >
-              <div className="h-1.5 w-1.5 rounded-full bg-accent" />
+              <div
+                className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent transition-transform duration-500"
+                style={{
+                  transform: isVisible ? "scale(1)" : "scale(0)",
+                  transitionDelay: `${index * 100 + 450 + featureIndex * 80}ms`,
+                }}
+              />
               {feature}
             </li>
           ))}
         </ul>
         <Link
           href="/devis"
-          className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-accent transition-all duration-300 hover:text-accent/80 hover:gap-2"
+          className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-accent transition-all duration-300 hover:gap-2"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateY(0)" : "translateY(10px)",
+            transitionDelay: `${index * 100 + 600}ms`,
+          }}
         >
           Demander un devis
           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -186,6 +253,7 @@ function ServiceCard({
 
 export function Services() {
   const headerRef = useRef<HTMLDivElement>(null);
+  const [headerVisible, setHeaderVisible] = useState(false);
 
   useEffect(() => {
     const el = headerRef.current;
@@ -194,7 +262,7 @@ export function Services() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.classList.add("service-visible");
+          setHeaderVisible(true);
           observer.unobserve(el);
         }
       },
@@ -208,21 +276,52 @@ export function Services() {
   return (
     <section id="services" className="bg-background py-24 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6">
-        {/* Section header */}
+        {/* Section header with staggered text reveal */}
         <div
           ref={headerRef}
-          className="service-header mx-auto max-w-2xl text-center"
+          className="mx-auto max-w-2xl text-center"
         >
-          <p className="text-sm font-semibold uppercase tracking-widest text-accent">
+          <p
+            className="text-sm font-semibold uppercase tracking-widest text-accent transition-all duration-700 ease-out"
+            style={{
+              opacity: headerVisible ? 1 : 0,
+              transform: headerVisible ? "translateY(0)" : "translateY(20px)",
+            }}
+          >
             Nos services
           </p>
-          <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Des solutions complètes pour tous vos voyages
+          <h2
+            className="mt-3 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl transition-all duration-700 ease-out"
+            style={{
+              opacity: headerVisible ? 1 : 0,
+              transform: headerVisible ? "translateY(0)" : "translateY(25px)",
+              transitionDelay: "150ms",
+            }}
+          >
+            Des solutions completes pour tous vos voyages
           </h2>
-          <p className="mt-4 text-pretty text-muted-foreground leading-relaxed">
-            Découvrez notre gamme de services conçus pour rendre chaque aspect
-            de votre voyage simple, sûr et agréable.
+          <p
+            className="mt-4 text-pretty text-muted-foreground leading-relaxed transition-all duration-700 ease-out"
+            style={{
+              opacity: headerVisible ? 1 : 0,
+              transform: headerVisible ? "translateY(0)" : "translateY(25px)",
+              transitionDelay: "300ms",
+            }}
+          >
+            Decouvrez notre gamme de services concus pour rendre chaque aspect
+            de votre voyage simple, sur et agreable.
           </p>
+
+          {/* Animated decorative line */}
+          <div className="mt-6 flex justify-center">
+            <div
+              className="h-1 rounded-full bg-accent transition-all duration-1000 ease-out"
+              style={{
+                width: headerVisible ? "80px" : "0px",
+                transitionDelay: "500ms",
+              }}
+            />
+          </div>
         </div>
 
         {/* Services grid */}

@@ -7,9 +7,9 @@ import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { href: "#accueil", label: "Accueil" },
-  { href: "#a-propos", label: "À propos" },
+  { href: "#a-propos", label: "A propos" },
   { href: "#services", label: "Services" },
-  { href: "#devis", label: "Devis" },
+  { href: "/devis", label: "Devis" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -46,7 +46,7 @@ export function Navbar() {
             </Link>
           ))}
           <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold">
-            <Link href="#devis">Demander un devis</Link>
+            <Link href="/devis">Demander un devis</Link>
           </Button>
         </div>
 
@@ -75,7 +75,7 @@ export function Navbar() {
               </Link>
             ))}
             <Button asChild className="mt-2 w-full bg-accent text-accent-foreground hover:bg-accent/90 font-semibold">
-              <Link href="#devis" onClick={() => setIsOpen(false)}>
+              <Link href="/devis" onClick={() => setIsOpen(false)}>
                 Demander un devis
               </Link>
             </Button>

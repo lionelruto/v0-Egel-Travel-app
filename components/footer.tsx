@@ -8,7 +8,7 @@ const footerLinks = [
       { href: "#accueil", label: "Accueil" },
       { href: "#a-propos", label: "À propos" },
       { href: "#services", label: "Services" },
-      { href: "#devis", label: "Devis" },
+      { href: "/devis", label: "Devis" },
       { href: "#contact", label: "Contact" },
     ],
   },
