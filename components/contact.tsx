@@ -15,7 +15,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    details: ["contact@egeltravel.com"],
+    details: ["contact@egel.cm"],
   },
   {
     icon: Clock,
