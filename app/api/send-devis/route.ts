@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 const RECIPIENT_EMAIL = "contact@egel.cm";
 
@@ -26,11 +27,9 @@ export async function POST(request: Request) {
       );
     }
 
-    // Determine if this is a travel service (with destination fields)
     const travelServices = ["billetterie", "tourisme", "voyage"];
     const isTravelService = travelServices.includes(service);
 
-    // Build the email body
     const serviceLabels: Record<string, string> = {
       billetterie: "Billetterie aerienne",
       assurance: "Assurance voyage",
@@ -41,81 +40,68 @@ export async function POST(request: Request) {
       evenementiel: "Evenementiel",
     };
 
-    let emailBody = `
-Nouvelle demande de devis - EGEL TRAVEL
-
----------------------------------------
-INFORMATIONS CLIENT
----------------------------------------
-Nom: ${nom}
-Prenom: ${prenom}
-Telephone: ${telephone}
-Email: ${email}
-
----------------------------------------
-SERVICE DEMANDE
----------------------------------------
-Service: ${serviceLabels[service] || service}
-`;
+    let emailBody = `Nouvelle demande de devis - EGEL TRAVEL\n`;
+    emailBody += `\n---------------------------------------`;
+    emailBody += `\nINFORMATIONS CLIENT`;
+    emailBody += `\n---------------------------------------`;
+    emailBody += `\nNom: ${nom}`;
+    emailBody += `\nPrenom: ${prenom}`;
+    emailBody += `\nTelephone: ${telephone}`;
+    emailBody += `\nEmail: ${email}`;
+    emailBody += `\n\n---------------------------------------`;
+    emailBody += `\nSERVICE DEMANDE`;
+    emailBody += `\n---------------------------------------`;
+    emailBody += `\nService: ${serviceLabels[service] || service}`;
 
     if (isTravelService) {
-      emailBody += `
----------------------------------------
-DETAILS DU VOYAGE
----------------------------------------
-Destination: ${destination || "Non specifiee"}
-Date de depart: ${dateDepart || "Non specifiee"}
-Date de retour: ${dateRetour || "Non specifiee"}
-Nombre de passagers: ${passengers || "Non specifie"}
-`;
+      emailBody += `\n\n---------------------------------------`;
+      emailBody += `\nDETAILS DU VOYAGE`;
+      emailBody += `\n---------------------------------------`;
+      emailBody += `\nDestination: ${destination || "Non specifiee"}`;
+      emailBody += `\nDate de depart: ${dateDepart || "Non specifiee"}`;
+      emailBody += `\nDate de retour: ${dateRetour || "Non specifiee"}`;
+      emailBody += `\nNombre de passagers: ${passengers || "Non specifie"}`;
     }
 
     if (message) {
-      emailBody += `
----------------------------------------
-MESSAGE
----------------------------------------
-${message}
-`;
+      emailBody += `\n\n---------------------------------------`;
+      emailBody += `\nMESSAGE`;
+      emailBody += `\n---------------------------------------`;
+      emailBody += `\n${message}`;
     }
 
-    emailBody += `
----------------------------------------
-Envoye depuis le site EGEL TRAVEL
-`;
+    emailBody += `\n\n---------------------------------------`;
+    emailBody += `\nEnvoye depuis le site EGEL TRAVEL`;
 
-    // Gmail SMTP configuration
     const GMAIL_USER = process.env.GMAIL_USER;
     const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD;
 
     if (!GMAIL_USER || !GMAIL_APP_PASSWORD) {
-      console.error("GMAIL_USER ou GMAIL_APP_PASSWORD non configure.");
-      // Fallback: log en dev
-      console.log("=== DEMANDE DE DEVIS (dev) ===");
-      console.log(`To: ${RECIPIENT_EMAIL}`);
-      console.log(`Subject: Nouvelle demande de devis - ${serviceLabels[service] || service} - ${nom} ${prenom}`);
-      console.log(emailBody);
-      console.log("==============================");
+      console.error("Variables manquantes - GMAIL_USER:", !!GMAIL_USER, "GMAIL_APP_PASSWORD:", !!GMAIL_APP_PASSWORD);
 
-      return NextResponse.json({
-        success: true,
-        method: "log",
-        note: "SMTP non configure. Ajoutez GMAIL_USER et GMAIL_APP_PASSWORD.",
-      });
+      return NextResponse.json(
+        { error: "Configuration email manquante. Veuillez contacter l'administrateur." },
+        { status: 500 }
+      );
     }
 
-    const nodemailer = await import("nodemailer");
+    console.log("Tentative d'envoi via Gmail SMTP...");
+    console.log("GMAIL_USER:", GMAIL_USER);
+    console.log("Destinataire:", RECIPIENT_EMAIL);
+
     const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
+      service: "gmail",
       auth: {
         user: GMAIL_USER,
         pass: GMAIL_APP_PASSWORD,
       },
     });
 
-    await transporter.sendMail({
+    // Verify connection first
+    await transporter.verify();
+    console.log("Connexion SMTP verifiee avec succes");
+
+    const info = await transporter.sendMail({
       from: `"EGEL TRAVEL - Site Web" <${GMAIL_USER}>`,
       to: RECIPIENT_EMAIL,
       replyTo: email,
@@ -123,11 +109,17 @@ Envoye depuis le site EGEL TRAVEL
       text: emailBody,
     });
 
-    return NextResponse.json({ success: true, method: "smtp" });
-  } catch (error) {
-    console.error("Erreur envoi devis:", error);
+    console.log("Email envoye avec succes, messageId:", info.messageId);
+
+    return NextResponse.json({ success: true, method: "smtp", messageId: info.messageId });
+  } catch (error: unknown) {
+    const errMessage = error instanceof Error ? error.message : "Erreur inconnue";
+    const errStack = error instanceof Error ? error.stack : "";
+    console.error("Erreur envoi devis:", errMessage);
+    console.error("Stack:", errStack);
+
     return NextResponse.json(
-      { error: "Erreur lors de l'envoi de la demande" },
+      { error: `Erreur lors de l'envoi: ${errMessage}` },
       { status: 500 }
     );
   }
