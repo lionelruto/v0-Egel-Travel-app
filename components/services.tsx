@@ -13,107 +13,34 @@ import {
   Map,
 } from "lucide-react";
 import Link from "next/link";
+import { useLanguage } from "@/lib/language-context";
 
-const services = [
-  {
-    icon: Plane,
-    title: "Billetterie aérienne",
-    description:
-      "Vente de billets pour toutes destinations avec accompagnement personnalisé. Nous comparons les meilleures offres pour vous garantir les tarifs les plus compétitifs.",
-    image: "./images/service-flight.jpg",
-    features: [
-      "Toutes compagnies aériennes",
-      "Meilleurs tarifs garantis",
-      "Accompagnement personnalisé",
-    ],
-  },
-  {
-    icon: Shield,
-    title: "Assurance voyage",
-    description:
-      "Couverture santé, annulation, bagages et assistance. Voyagez en toute sérénité avec nos solutions d'assurance complètes et adaptées.",
-    image: "./images/service-insurance.jpg",
-    features: [
-      "Couverture santé internationale",
-      "Assurance annulation",
-      "Assistance 24h/24",
-    ],
-  },
-  {
-    icon: Car,
-    title: "Location de véhicules",
-    description:
-      "Avec ou sans chauffeur pour déplacements professionnels ou personnels. Large gamme de véhicules adaptés à tous vos besoins.",
-    image: "./images/service-car.jpg",
-    features: [
-      "Avec ou sans chauffeur",
-      "Large gamme de véhicules",
-      "Tarifs compétitifs",
-    ],
-  },
-  {
-    icon: FileText,
-    title: "Immigration & Assistance",
-    description:
-      "Accompagnement légal pour visas et démarches administratives, 100% conforme à la loi. Notre équipe d'experts simplifie vos procédures.",
-    image: "./images/service-immigration.jpg",
-    features: [
-      "Demande de visa",
-      "Démarches administratives",
-      "100% conforme à la loi",
-    ],
-  },
-  {
-    icon: Map,
-    title: "Service tourisme & Voyages",
-    description:
-      "Nous concevons des experiences de voyage sur mesure adaptees aux particuliers, entreprises et clients VIP.",
-    image: "./images/tourisme-voyage.jpeg",
-    features: [
-      "Reservation de billets d'avions (National & international)",
-      "Organisation des sejours personaliés",
-      "voyages de groupe",
-      "Assistance visa et formalites administratives",
-      "Sejours VIP et premium",
-    ],
-  },
-  {
-    icon: House,
-    title: "Service Immbobilier",
-    description:
-      "Nous accompagnons nos clients dans la recherche, l'acquisition, la location et la valorisation de biens immobiliers.",
-    image: "./images/service-immobilier.jpeg",
-    features: [
-      "Vente et achat de biens immobiliers",
-      "Location courte et longue durée",
-      "gestion locative",
-      "Mise en relation avec investisseurs",
-      "Conseil en investissement immobilier",
-      "Recherche de biens sur mesure",
-    ],
-  },
-  {
-    icon: Calendar1,
-    title: "Service Evenementiel",
-    description:
-      "Nous creons des evenements élegants, impactants et parfaitement orchestrés.",
-    image: "./images/service-evenementiel.jpg",
-    features: [
-      "Evenements d'entreprise",
-      "Lancements de produits",
-      "Seminaires et conférences",
-      "Soirées privées",
-      "Mariages et celebrations",
-      "Evenements premiums & VIP",
-    ],
-  },
+const serviceIcons = [Plane, Shield, Car, FileText, Map, House, Calendar1];
+const serviceImages = [
+  "./images/service-flight.jpg",
+  "./images/service-insurance.jpg",
+  "./images/service-car.jpg",
+  "./images/service-immigration.jpg",
+  "./images/tourisme-voyage.jpeg",
+  "./images/service-immobilier.jpeg",
+  "./images/service-evenementiel.jpg",
 ];
 
 function ServiceCard({
-  service,
+  title,
+  description,
+  features,
+  image,
+  icon: Icon,
+  ctaText,
   index,
 }: {
-  service: (typeof services)[number];
+  title: string;
+  description: string;
+  features: readonly string[];
+  image: string;
+  icon: typeof Plane;
+  ctaText: string;
   index: number;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -155,11 +82,10 @@ function ServiceCard({
           : "none",
       }}
     >
-      {/* Image section with parallax-like zoom */}
       <div className="relative h-52 overflow-hidden">
         <Image
-          src={service.image}
-          alt={service.title}
+          src={image}
+          alt={title}
           fill
           className="object-cover transition-transform duration-700 ease-out"
           style={{
@@ -174,7 +100,6 @@ function ServiceCard({
               : "rgba(2,22,46,0.4)",
           }}
         />
-        {/* Icon badge with bounce-in */}
         <div
           className="absolute bottom-4 left-4 flex h-12 w-12 items-center justify-center rounded-lg bg-accent transition-all duration-500 ease-out"
           style={{
@@ -186,11 +111,10 @@ function ServiceCard({
             transitionDelay: isVisible ? `${index * 100 + 300}ms` : "0ms",
           }}
         >
-          <service.icon className="h-6 w-6 text-accent-foreground" />
+          <Icon className="h-6 w-6 text-accent-foreground" />
         </div>
       </div>
 
-      {/* Content with staggered feature reveal */}
       <div className="p-6">
         <h3
           className="text-xl font-bold text-card-foreground transition-all duration-500"
@@ -200,7 +124,7 @@ function ServiceCard({
             transitionDelay: `${index * 100 + 200}ms`,
           }}
         >
-          {service.title}
+          {title}
         </h3>
         <p
           className="mt-2 text-muted-foreground leading-relaxed transition-all duration-500"
@@ -210,10 +134,10 @@ function ServiceCard({
             transitionDelay: `${index * 100 + 300}ms`,
           }}
         >
-          {service.description}
+          {description}
         </p>
         <ul className="mt-4 flex flex-col gap-2">
-          {service.features.map((feature, featureIndex) => (
+          {features.map((feature, featureIndex) => (
             <li
               key={feature}
               className="flex items-center gap-2 text-sm text-card-foreground transition-all duration-500"
@@ -243,7 +167,7 @@ function ServiceCard({
             transitionDelay: `${index * 100 + 600}ms`,
           }}
         >
-          Demander un devis
+          {ctaText}
           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
         </Link>
       </div>
@@ -254,6 +178,7 @@ function ServiceCard({
 export function Services() {
   const headerRef = useRef<HTMLDivElement>(null);
   const [headerVisible, setHeaderVisible] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const el = headerRef.current;
@@ -276,11 +201,7 @@ export function Services() {
   return (
     <section id="services" className="bg-background py-24 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6">
-        {/* Section header with staggered text reveal */}
-        <div
-          ref={headerRef}
-          className="mx-auto max-w-2xl text-center"
-        >
+        <div ref={headerRef} className="mx-auto max-w-2xl text-center">
           <p
             className="text-sm font-semibold uppercase tracking-widest text-accent transition-all duration-700 ease-out"
             style={{
@@ -288,7 +209,7 @@ export function Services() {
               transform: headerVisible ? "translateY(0)" : "translateY(20px)",
             }}
           >
-            Nos services
+            {t.services.tag}
           </p>
           <h2
             className="mt-3 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl transition-all duration-700 ease-out"
@@ -298,7 +219,7 @@ export function Services() {
               transitionDelay: "150ms",
             }}
           >
-            Des solutions completes pour tous vos voyages
+            {t.services.title}
           </h2>
           <p
             className="mt-4 text-pretty text-muted-foreground leading-relaxed transition-all duration-700 ease-out"
@@ -308,11 +229,9 @@ export function Services() {
               transitionDelay: "300ms",
             }}
           >
-            Decouvrez notre gamme de services concus pour rendre chaque aspect
-            de votre voyage simple, sur et agreable.
+            {t.services.description}
           </p>
 
-          {/* Animated decorative line */}
           <div className="mt-6 flex justify-center">
             <div
               className="h-1 rounded-full bg-accent transition-all duration-1000 ease-out"
@@ -324,10 +243,18 @@ export function Services() {
           </div>
         </div>
 
-        {/* Services grid */}
         <div className="mt-16 grid gap-8 md:grid-cols-2">
-          {services.map((service, index) => (
-            <ServiceCard key={service.title} service={service} index={index} />
+          {t.services.items.map((service, index) => (
+            <ServiceCard
+              key={service.title}
+              title={service.title}
+              description={service.description}
+              features={service.features}
+              image={serviceImages[index]}
+              icon={serviceIcons[index]}
+              ctaText={t.services.cta}
+              index={index}
+            />
           ))}
         </div>
       </div>

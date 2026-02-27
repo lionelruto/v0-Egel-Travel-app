@@ -1,29 +1,31 @@
-import Link from "next/link";
-import { Plane } from "lucide-react";
+"use client";
 
-const footerLinks = [
-  {
-    title: "Navigation",
-    links: [
-      { href: "#accueil", label: "Accueil" },
-      { href: "#a-propos", label: "À propos" },
-      { href: "#services", label: "Services" },
-      { href: "/devis", label: "Devis" },
-      { href: "#contact", label: "Contact" },
-    ],
-  },
-  {
-    title: "Services",
-    links: [
-      { href: "#services", label: "Billetterie aérienne" },
-      { href: "#services", label: "Assurance voyage" },
-      { href: "#services", label: "Location de véhicules" },
-      { href: "#services", label: "Immigration" },
-    ],
-  },
-];
+import Link from "next/link";
+import Image from "next/image";
+import { useLanguage } from "@/lib/language-context";
 
 export function Footer() {
+  const { t } = useLanguage();
+
+  const footerLinks = [
+    {
+      title: t.footer.navigation,
+      links: [
+        { href: "#accueil", label: t.nav.home },
+        { href: "#a-propos", label: t.nav.about },
+        { href: "#services", label: t.nav.services },
+        { href: "#contact", label: t.nav.contact },
+      ],
+    },
+    {
+      title: t.footer.servicesTitle,
+      links: t.footer.serviceLinks.map((label) => ({
+        href: "#services",
+        label,
+      })),
+    },
+  ];
+
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="mx-auto max-w-7xl px-6 py-16">
@@ -31,22 +33,24 @@ export function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <Link href="#accueil" className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent">
-                <Plane className="h-5 w-5 text-accent-foreground" />
-              </div>
+              <Image
+                src="/images/logo-egel.png"
+                alt="EGEL TRAVEL"
+                width={48}
+                height={48}
+                className="h-12 w-12 object-contain"
+              />
               <div className="flex flex-col">
                 <span className="text-lg font-bold tracking-tight text-primary-foreground leading-tight">
                   EGEL TRAVEL
                 </span>
                 <span className="text-[10px] uppercase tracking-widest text-primary-foreground/60 leading-tight">
-                  Voyagez l{"'"}esprit tranquille
+                  {t.footer.tagline}
                 </span>
               </div>
             </Link>
             <p className="mt-4 max-w-sm text-sm text-primary-foreground/70 leading-relaxed">
-              EGEL TRAVEL SARL accompagne vos projets de voyage avec
-              transparence et sérénité. Votre agence de voyage de confiance à
-              Yaoundé, Cameroun.
+              {t.footer.description}
             </p>
           </div>
 
@@ -75,8 +79,8 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 border-t border-primary-foreground/10 pt-8 text-center">
           <p className="text-sm text-primary-foreground/50">
-            © {new Date().getFullYear()} EGEL TRAVEL SARL – Tous droits
-            réservés. Voyagez l{"'"}esprit tranquille.
+            &copy; {new Date().getFullYear()} EGEL TRAVEL SARL &ndash;{" "}
+            {t.footer.copyright}
           </p>
         </div>
       </div>

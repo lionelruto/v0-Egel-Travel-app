@@ -1,9 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MessageCircle } from "lucide-react";
+import { useLanguage } from "@/lib/language-context";
 
 export function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section
       id="accueil"
@@ -12,7 +17,7 @@ export function Hero() {
       {/* Background Image */}
       <Image
         src="./images/hero-travel.jpg"
-        alt="Destination de voyage paradisiaque"
+        alt={t.hero.badge}
         fill
         className="object-cover"
         priority
@@ -22,15 +27,13 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 text-center">
         <p className="mb-4 inline-block rounded-full bg-accent/20 px-4 py-1.5 text-sm font-medium text-accent backdrop-blur-sm">
-          Votre agence de voyage de confiance à Yaoundé
+          {t.hero.badge}
         </p>
         <h1 className="mx-auto max-w-4xl text-balance text-4xl font-bold tracking-tight text-primary-foreground sm:text-5xl md:text-6xl lg:text-7xl leading-tight">
-          Voyagez l{"'"}esprit tranquille
+          {t.hero.title}
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-primary-foreground/80 leading-relaxed">
-          EGEL TRAVEL SARL accompagne vos projets de voyage avec transparence et
-          sérénité. Billetterie aérienne, assurance voyage, location de
-          véhicules et accompagnement en immigration.
+          {t.hero.description}
         </p>
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Button
@@ -39,7 +42,7 @@ export function Hero() {
             className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold text-base px-8"
           >
             <Link href="/devis">
-              Demander un devis
+              {t.hero.cta}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
@@ -62,12 +65,7 @@ export function Hero() {
 
         {/* Trust indicators */}
         <div className="mt-16 grid grid-cols-2 gap-6 sm:grid-cols-4">
-          {[
-            { value: "500+", label: "Clients satisfaits" },
-            { value: "50+", label: "Destinations" },
-            { value: "10+", label: "Années d'expérience" },
-            { value: "24/7", label: "Support client" },
-          ].map((stat) => (
+          {t.hero.stats.map((stat) => (
             <div key={stat.label} className="text-center">
               <p className="text-2xl font-bold text-accent sm:text-3xl">
                 {stat.value}
