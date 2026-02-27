@@ -25,41 +25,14 @@ import {
   Loader2,
 } from "lucide-react";
 import Link from "next/link";
+import { useLanguage } from "@/lib/language-context";
 
-const steps = [
-  {
-    step: "01",
-    title: "Remplissez le formulaire",
-    desc: "Indiquez vos besoins et la destination souhaitee",
-  },
-  {
-    step: "02",
-    title: "Recevez votre devis",
-    desc: "Notre equipe vous envoie une proposition adaptee",
-  },
-  {
-    step: "03",
-    title: "Confirmez et voyagez",
-    desc: "Validez votre reservation et preparez votre voyage",
-  },
-];
+const serviceIcons = [Plane, Shield, Car, FileText, Map, House, Calendar1];
 
-const serviceOptions = [
-  { value: "billetterie", label: "Billetterie aerienne", icon: Plane },
-  { value: "assurance", label: "Assurance voyage", icon: Shield },
-  { value: "location", label: "Location de vehicules", icon: Car },
-  { value: "immigration", label: "Immigration & Assistance", icon: FileText },
-  { value: "tourisme", label: "Tourisme & Voyages", icon: Map },
-  { value: "immobilier", label: "Immobilier", icon: House },
-  { value: "evenementiel", label: "Evenementiel", icon: Calendar1 },
-];
-
-// Services that show travel-specific fields (destination, dates, passengers)
-const travelServices = ["billetterie", "tourisme", "voyage"];
+const travelServiceValues = ["billetterie", "tourisme", "voyage"];
 
 function isTravelService(service: string) {
-  // "tourisme" value maps to "Tourisme & Voyages"
-  return travelServices.includes(service);
+  return travelServiceValues.includes(service);
 }
 
 export function DevisContent() {
@@ -71,6 +44,7 @@ export function DevisContent() {
   const [formVisible, setFormVisible] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const timer = setTimeout(() => setHeaderVisible(true), 100);
@@ -124,13 +98,13 @@ export function DevisContent() {
 
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.error || "Erreur lors de l'envoi");
+        throw new Error(data.error || "Error");
       }
 
       setSubmitted(true);
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Erreur lors de l'envoi de la demande"
+        err instanceof Error ? err.message : "Error"
       );
     } finally {
       setLoading(false);
@@ -154,12 +128,12 @@ export function DevisContent() {
             <CheckCircle className="h-8 w-8 text-accent" />
           </div>
           <h2 className="mt-6 text-2xl font-bold text-foreground">
-            Demande envoyee avec succes !
+            {t.devis.success.title}
           </h2>
           <p className="mt-3 text-muted-foreground leading-relaxed">
-            Merci pour votre demande. Notre equipe vous contactera rapidement a
-            l{"'"}adresse <span className="font-semibold text-foreground">contact@egel.cm</span> pour
-            vous proposer la meilleure solution.
+            {t.devis.success.description}{" "}
+            <span className="font-semibold text-foreground">contact@egel.cm</span>{" "}
+            {t.devis.success.descriptionEnd}
           </p>
           <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Button
@@ -169,10 +143,10 @@ export function DevisContent() {
               }}
               className="bg-accent text-accent-foreground hover:bg-accent/90"
             >
-              Nouvelle demande
+              {t.devis.success.newRequest}
             </Button>
             <Button variant="outline" asChild>
-              <Link href="/">Retour a l{"'"}accueil</Link>
+              <Link href="/">{t.devis.success.backHome}</Link>
             </Button>
           </div>
         </div>
@@ -194,7 +168,7 @@ export function DevisContent() {
                 transition: "opacity 0.5s ease-out",
               }}
             >
-              {"< Retour a l'accueil"}
+              {t.devis.backLink}
             </Link>
           </nav>
           <p
@@ -204,7 +178,7 @@ export function DevisContent() {
               transform: headerVisible ? "translateY(0)" : "translateY(20px)",
             }}
           >
-            Demande de devis
+            {t.devis.tag}
           </p>
           <h1
             className="mt-3 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl transition-all duration-700 ease-out"
@@ -214,7 +188,7 @@ export function DevisContent() {
               transitionDelay: "150ms",
             }}
           >
-            Obtenez votre devis personnalise
+            {t.devis.title}
           </h1>
           <p
             className="mt-4 text-pretty text-muted-foreground leading-relaxed transition-all duration-700 ease-out"
@@ -224,12 +198,11 @@ export function DevisContent() {
               transitionDelay: "300ms",
             }}
           >
-            Remplissez le formulaire ci-dessous et notre equipe vous contactera
-            rapidement a <span className="font-semibold text-foreground">contact@egel.cm</span> pour
-            vous proposer la solution la plus adaptee a vos besoins.
+            {t.devis.description}{" "}
+            <span className="font-semibold text-foreground">contact@egel.cm</span>{" "}
+            {t.devis.descriptionEnd}
           </p>
 
-          {/* Animated decorative line */}
           <div className="mt-6 flex justify-center">
             <div
               className="h-1 rounded-full bg-accent transition-all duration-1000 ease-out"
@@ -246,7 +219,7 @@ export function DevisContent() {
           {/* Left: Steps */}
           <div className="lg:col-span-2">
             <div className="flex flex-col gap-8">
-              {steps.map((item, index) => (
+              {t.devis.steps.map((item, index) => (
                 <div
                   key={item.step}
                   className="flex items-start gap-4 transition-all duration-600 ease-out"
@@ -276,41 +249,44 @@ export function DevisContent() {
 
             {/* Service icons grid */}
             <div className="mt-12 grid grid-cols-4 gap-4">
-              {serviceOptions.map((service, index) => (
-                <div
-                  key={service.value}
-                  className={`flex flex-col items-center gap-2 rounded-lg border p-3 transition-all duration-500 ease-out cursor-pointer ${
-                    selectedService === service.value
-                      ? "border-accent bg-accent/10 shadow-sm"
-                      : "border-border bg-card hover:border-accent/50 hover:shadow-sm"
-                  }`}
-                  style={{
-                    opacity: formVisible ? 1 : 0,
-                    transform: formVisible
-                      ? "translateY(0) scale(1)"
-                      : "translateY(20px) scale(0.9)",
-                    transitionDelay: `${450 + index * 80}ms`,
-                  }}
-                  onClick={() => setSelectedService(service.value)}
-                >
-                  <service.icon
-                    className={`h-5 w-5 transition-colors duration-300 ${
+              {t.devis.serviceOptions.map((service, index) => {
+                const Icon = serviceIcons[index];
+                return (
+                  <div
+                    key={service.value}
+                    className={`flex flex-col items-center gap-2 rounded-lg border p-3 transition-all duration-500 ease-out cursor-pointer ${
                       selectedService === service.value
-                        ? "text-accent"
-                        : "text-muted-foreground"
+                        ? "border-accent bg-accent/10 shadow-sm"
+                        : "border-border bg-card hover:border-accent/50 hover:shadow-sm"
                     }`}
-                  />
-                  <span
-                    className={`text-[10px] text-center leading-tight transition-colors duration-300 ${
-                      selectedService === service.value
-                        ? "text-accent font-semibold"
-                        : "text-muted-foreground"
-                    }`}
+                    style={{
+                      opacity: formVisible ? 1 : 0,
+                      transform: formVisible
+                        ? "translateY(0) scale(1)"
+                        : "translateY(20px) scale(0.9)",
+                      transitionDelay: `${450 + index * 80}ms`,
+                    }}
+                    onClick={() => setSelectedService(service.value)}
                   >
-                    {service.label}
-                  </span>
-                </div>
-              ))}
+                    <Icon
+                      className={`h-5 w-5 transition-colors duration-300 ${
+                        selectedService === service.value
+                          ? "text-accent"
+                          : "text-muted-foreground"
+                      }`}
+                    />
+                    <span
+                      className={`text-[10px] text-center leading-tight transition-colors duration-300 ${
+                        selectedService === service.value
+                          ? "text-accent font-semibold"
+                          : "text-muted-foreground"
+                      }`}
+                    >
+                      {service.label}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
@@ -330,24 +306,24 @@ export function DevisContent() {
               <div className="grid gap-5 sm:grid-cols-2">
                 <div className="flex flex-col gap-2">
                   <Label htmlFor="nom" className="text-card-foreground">
-                    Nom <span className="text-destructive">*</span>
+                    {t.devis.form.nom} <span className="text-destructive">*</span>
                   </Label>
                   <Input
                     id="nom"
                     name="nom"
-                    placeholder="Votre nom"
+                    placeholder={t.devis.form.nomPlaceholder}
                     required
                     className="bg-background"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
                   <Label htmlFor="prenom" className="text-card-foreground">
-                    Prenom <span className="text-destructive">*</span>
+                    {t.devis.form.prenom} <span className="text-destructive">*</span>
                   </Label>
                   <Input
                     id="prenom"
                     name="prenom"
-                    placeholder="Votre prenom"
+                    placeholder={t.devis.form.prenomPlaceholder}
                     required
                     className="bg-background"
                   />
@@ -358,7 +334,7 @@ export function DevisContent() {
               <div className="grid gap-5 sm:grid-cols-2">
                 <div className="flex flex-col gap-2">
                   <Label htmlFor="telephone" className="text-card-foreground">
-                    Telephone <span className="text-destructive">*</span>
+                    {t.devis.form.telephone} <span className="text-destructive">*</span>
                   </Label>
                   <Input
                     id="telephone"
@@ -371,7 +347,7 @@ export function DevisContent() {
                 </div>
                 <div className="flex flex-col gap-2">
                   <Label htmlFor="email" className="text-card-foreground">
-                    Email <span className="text-destructive">*</span>
+                    {t.devis.form.email} <span className="text-destructive">*</span>
                   </Label>
                   <Input
                     id="email"
@@ -387,7 +363,7 @@ export function DevisContent() {
               {/* Service selection */}
               <div className="flex flex-col gap-2">
                 <Label htmlFor="service" className="text-card-foreground">
-                  Service souhaite <span className="text-destructive">*</span>
+                  {t.devis.form.service} <span className="text-destructive">*</span>
                 </Label>
                 <Select
                   required
@@ -395,22 +371,25 @@ export function DevisContent() {
                   onValueChange={setSelectedService}
                 >
                   <SelectTrigger className="bg-background">
-                    <SelectValue placeholder="Choisissez un service" />
+                    <SelectValue placeholder={t.devis.form.servicePlaceholder} />
                   </SelectTrigger>
                   <SelectContent>
-                    {serviceOptions.map((service) => (
-                      <SelectItem key={service.value} value={service.value}>
-                        <span className="flex items-center gap-2">
-                          <service.icon className="h-4 w-4 text-muted-foreground" />
-                          {service.label}
-                        </span>
-                      </SelectItem>
-                    ))}
+                    {t.devis.serviceOptions.map((service, index) => {
+                      const Icon = serviceIcons[index];
+                      return (
+                        <SelectItem key={service.value} value={service.value}>
+                          <span className="flex items-center gap-2">
+                            <Icon className="h-4 w-4 text-muted-foreground" />
+                            {service.label}
+                          </span>
+                        </SelectItem>
+                      );
+                    })}
                   </SelectContent>
                 </Select>
               </div>
 
-              {/* Dynamic travel fields - only for billetterie, tourisme, voyage */}
+              {/* Dynamic travel fields */}
               {showTravelFields && (
                 <div
                   className="flex flex-col gap-5 transition-all duration-500 ease-out overflow-hidden"
@@ -420,27 +399,21 @@ export function DevisContent() {
                   }}
                 >
                   <div className="flex flex-col gap-2">
-                    <Label
-                      htmlFor="destination"
-                      className="text-card-foreground"
-                    >
-                      Destination
+                    <Label htmlFor="destination" className="text-card-foreground">
+                      {t.devis.form.destination}
                     </Label>
                     <Input
                       id="destination"
                       name="destination"
-                      placeholder="Ex: Paris, Dubai, New York..."
+                      placeholder={t.devis.form.destinationPlaceholder}
                       className="bg-background"
                     />
                   </div>
 
                   <div className="grid gap-5 sm:grid-cols-2">
                     <div className="flex flex-col gap-2">
-                      <Label
-                        htmlFor="date-depart"
-                        className="text-card-foreground"
-                      >
-                        Date de depart
+                      <Label htmlFor="date-depart" className="text-card-foreground">
+                        {t.devis.form.dateDepart}
                       </Label>
                       <Input
                         id="date-depart"
@@ -450,11 +423,8 @@ export function DevisContent() {
                       />
                     </div>
                     <div className="flex flex-col gap-2">
-                      <Label
-                        htmlFor="date-retour"
-                        className="text-card-foreground"
-                      >
-                        Date de retour
+                      <Label htmlFor="date-retour" className="text-card-foreground">
+                        {t.devis.form.dateRetour}
                       </Label>
                       <Input
                         id="date-retour"
@@ -466,11 +436,8 @@ export function DevisContent() {
                   </div>
 
                   <div className="flex flex-col gap-2">
-                    <Label
-                      htmlFor="passengers"
-                      className="text-card-foreground"
-                    >
-                      Nombre de passagers
+                    <Label htmlFor="passengers" className="text-card-foreground">
+                      {t.devis.form.passengers}
                     </Label>
                     <Input
                       id="passengers"
@@ -484,18 +451,18 @@ export function DevisContent() {
                 </div>
               )}
 
-              {/* Message - always visible */}
+              {/* Message */}
               <div className="flex flex-col gap-2">
                 <Label htmlFor="message" className="text-card-foreground">
-                  Message
+                  {t.devis.form.message}
                 </Label>
                 <Textarea
                   id="message"
                   name="message"
                   placeholder={
                     showTravelFields
-                      ? "Decrivez votre projet de voyage..."
-                      : "Decrivez votre demande en detail..."
+                      ? t.devis.form.messagePlaceholderTravel
+                      : t.devis.form.messagePlaceholderOther
                   }
                   rows={4}
                   className="bg-background resize-none"
@@ -516,18 +483,18 @@ export function DevisContent() {
                 {loading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Envoi en cours...
+                    {t.devis.form.submitting}
                   </>
                 ) : (
                   <>
                     <Send className="mr-2 h-4 w-4" />
-                    Envoyer ma demande
+                    {t.devis.form.submit}
                   </>
                 )}
               </Button>
 
               <p className="text-xs text-center text-muted-foreground">
-                Votre demande sera envoyee a{" "}
+                {t.devis.form.requestSentTo}{" "}
                 <span className="font-medium">contact@egel.cm</span>
               </p>
             </form>

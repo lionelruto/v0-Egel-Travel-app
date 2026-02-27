@@ -1,28 +1,31 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-
-const footerLinks = [
-  {
-    title: "Navigation",
-    links: [
-      { href: "#accueil", label: "Accueil" },
-      { href: "#a-propos", label: "A propos" },
-      { href: "#services", label: "Services" },
-      { href: "#contact", label: "Contact" },
-    ],
-  },
-  {
-    title: "Services",
-    links: [
-      { href: "#services", label: "Billetterie aérienne" },
-      { href: "#services", label: "Assurance voyage" },
-      { href: "#services", label: "Location de véhicules" },
-      { href: "#services", label: "Immigration" },
-    ],
-  },
-];
+import { useLanguage } from "@/lib/language-context";
 
 export function Footer() {
+  const { t } = useLanguage();
+
+  const footerLinks = [
+    {
+      title: t.footer.navigation,
+      links: [
+        { href: "#accueil", label: t.nav.home },
+        { href: "#a-propos", label: t.nav.about },
+        { href: "#services", label: t.nav.services },
+        { href: "#contact", label: t.nav.contact },
+      ],
+    },
+    {
+      title: t.footer.servicesTitle,
+      links: t.footer.serviceLinks.map((label) => ({
+        href: "#services",
+        label,
+      })),
+    },
+  ];
+
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="mx-auto max-w-7xl px-6 py-16">
@@ -42,14 +45,12 @@ export function Footer() {
                   EGEL TRAVEL
                 </span>
                 <span className="text-[10px] uppercase tracking-widest text-primary-foreground/60 leading-tight">
-                  Voyagez l{"'"}esprit tranquille
+                  {t.footer.tagline}
                 </span>
               </div>
             </Link>
             <p className="mt-4 max-w-sm text-sm text-primary-foreground/70 leading-relaxed">
-              EGEL TRAVEL SARL accompagne vos projets de voyage avec
-              transparence et sérénité. Votre agence de voyage de confiance à
-              Yaoundé, Cameroun.
+              {t.footer.description}
             </p>
           </div>
 
@@ -78,8 +79,8 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 border-t border-primary-foreground/10 pt-8 text-center">
           <p className="text-sm text-primary-foreground/50">
-            © {new Date().getFullYear()} EGEL TRAVEL SARL – Tous droits
-            réservés. Voyagez l{"'"}esprit tranquille.
+            &copy; {new Date().getFullYear()} EGEL TRAVEL SARL &ndash;{" "}
+            {t.footer.copyright}
           </p>
         </div>
       </div>
