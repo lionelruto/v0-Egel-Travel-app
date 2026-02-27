@@ -84,49 +84,46 @@ ${message}
 Envoye depuis le site EGEL TRAVEL
 `;
 
-    // Send using mailto link approach via nodemailer-like SMTP
-    // For production, configure SMTP credentials in environment variables
-    const SMTP_HOST = process.env.SMTP_HOST;
-    const SMTP_PORT = process.env.SMTP_PORT;
-    const SMTP_USER = process.env.SMTP_USER;
-    const SMTP_PASS = process.env.SMTP_PASS;
+    // Gmail SMTP configuration
+    const GMAIL_USER = process.env.GMAIL_USER;
+    const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD;
 
-    if (SMTP_HOST && SMTP_USER && SMTP_PASS) {
-      // Use nodemailer for SMTP sending
-      const nodemailer = await import("nodemailer");
-      const transporter = nodemailer.createTransport({
-        host: SMTP_HOST,
-        port: Number(SMTP_PORT) || 587,
-        secure: Number(SMTP_PORT) === 465,
-        auth: {
-          user: SMTP_USER,
-          pass: SMTP_PASS,
-        },
+    if (!GMAIL_USER || !GMAIL_APP_PASSWORD) {
+      console.error("GMAIL_USER ou GMAIL_APP_PASSWORD non configure.");
+      // Fallback: log en dev
+      console.log("=== DEMANDE DE DEVIS (dev) ===");
+      console.log(`To: ${RECIPIENT_EMAIL}`);
+      console.log(`Subject: Nouvelle demande de devis - ${serviceLabels[service] || service} - ${nom} ${prenom}`);
+      console.log(emailBody);
+      console.log("==============================");
+
+      return NextResponse.json({
+        success: true,
+        method: "log",
+        note: "SMTP non configure. Ajoutez GMAIL_USER et GMAIL_APP_PASSWORD.",
       });
-
-      await transporter.sendMail({
-        from: `"EGEL TRAVEL - Site Web" <${SMTP_USER}>`,
-        to: RECIPIENT_EMAIL,
-        replyTo: email,
-        subject: `Nouvelle demande de devis - ${serviceLabels[service] || service} - ${nom} ${prenom}`,
-        text: emailBody,
-      });
-
-      return NextResponse.json({ success: true, method: "smtp" });
     }
 
-    // Fallback: log the email details (for development/preview)
-    console.log("=== DEMANDE DE DEVIS ===");
-    console.log(`To: ${RECIPIENT_EMAIL}`);
-    console.log(`Subject: Nouvelle demande de devis - ${serviceLabels[service] || service} - ${nom} ${prenom}`);
-    console.log(emailBody);
-    console.log("========================");
-
-    return NextResponse.json({
-      success: true,
-      method: "log",
-      note: "SMTP non configure. Configurez SMTP_HOST, SMTP_USER, SMTP_PASS pour envoyer de vrais emails.",
+    const nodemailer = await import("nodemailer");
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: GMAIL_USER,
+        pass: GMAIL_APP_PASSWORD,
+      },
     });
+
+    await transporter.sendMail({
+      from: `"EGEL TRAVEL - Site Web" <${GMAIL_USER}>`,
+      to: RECIPIENT_EMAIL,
+      replyTo: email,
+      subject: `Nouvelle demande de devis - ${serviceLabels[service] || service} - ${nom} ${prenom}`,
+      text: emailBody,
+    });
+
+    return NextResponse.json({ success: true, method: "smtp" });
   } catch (error) {
     console.error("Erreur envoi devis:", error);
     return NextResponse.json(
