@@ -14,6 +14,10 @@ export const metadata: Metadata = {
     "EGEL TRAVEL SARL - Votre agence de voyage de confiance a Yaounde. Billetterie aerienne, assurance voyage, location de vehicules et accompagnement en immigration.",
   keywords:
     "agence de voyage Yaounde, billet d'avion Cameroun, assurance voyage, immigration, location vehicule Cameroun",
+  icons: {
+    icon: "/images/logo-egel.png",
+    apple: "/images/logo-egel.png",
+  },
 };
 
 export default function RootLayout({
