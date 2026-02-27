@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X, Plane } from "lucide-react";
+import Image from "next/image";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { href: "/#accueil", label: "Accueil" },
   { href: "/#a-propos", label: "A propos" },
   { href: "/#services", label: "Services" },
-  { href: "/devis", label: "Devis" },
   { href: "/#contact", label: "Contact" },
 ];
 
@@ -21,9 +21,13 @@ export function Navbar() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo */}
         <Link href="/#accueil" className="flex items-center gap-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary">
-            <Plane className="h-5 w-5 text-primary-foreground" />
-          </div>
+          <Image
+            src="/images/logo-egel.png"
+            alt="EGEL TRAVEL"
+            width={48}
+            height={48}
+            className="h-12 w-12 object-contain"
+          />
           <div className="flex flex-col">
             <span className="text-lg font-bold tracking-tight text-foreground leading-tight">
               EGEL TRAVEL

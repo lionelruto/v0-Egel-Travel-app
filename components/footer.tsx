@@ -1,14 +1,13 @@
 import Link from "next/link";
-import { Plane } from "lucide-react";
+import Image from "next/image";
 
 const footerLinks = [
   {
     title: "Navigation",
     links: [
       { href: "#accueil", label: "Accueil" },
-      { href: "#a-propos", label: "À propos" },
+      { href: "#a-propos", label: "A propos" },
       { href: "#services", label: "Services" },
-      { href: "/devis", label: "Devis" },
       { href: "#contact", label: "Contact" },
     ],
   },
@@ -31,9 +30,13 @@ export function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <Link href="#accueil" className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent">
-                <Plane className="h-5 w-5 text-accent-foreground" />
-              </div>
+              <Image
+                src="/images/logo-egel.png"
+                alt="EGEL TRAVEL"
+                width={48}
+                height={48}
+                className="h-12 w-12 object-contain"
+              />
               <div className="flex flex-col">
                 <span className="text-lg font-bold tracking-tight text-primary-foreground leading-tight">
                   EGEL TRAVEL
