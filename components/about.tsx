@@ -25,7 +25,7 @@ export function About() {
             </div>
             {/* Floating card */}
             <div className="absolute -bottom-6 -right-4 rounded-xl bg-primary px-6 py-4 text-primary-foreground shadow-xl sm:-right-6">
-              <p className="text-2xl font-bold">10+</p>
+              <p className="text-2xl font-bold">2+</p>
               <p className="text-sm text-primary-foreground/80">
                 {t.about.experience}
               </p>
