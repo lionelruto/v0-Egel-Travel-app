@@ -31,13 +31,13 @@ export async function POST(request: Request) {
     const isTravelService = travelServices.includes(service);
 
     const serviceLabels: Record<string, string> = {
-      billetterie: "Billetterie aerienne",
+      billetterie: "Billetterie aérienne",
       assurance: "Assurance voyage",
-      location: "Location de vehicules",
+      location: "Location de véhicules",
       immigration: "Immigration & Assistance",
       tourisme: "Tourisme & Voyages",
       immobilier: "Immobilier",
-      evenementiel: "Evenementiel",
+      evenementiel: "Événementiel",
     };
 
     let emailBody = `Nouvelle demande de devis - EGEL TRAVEL\n`;
@@ -45,11 +45,11 @@ export async function POST(request: Request) {
     emailBody += `\nINFORMATIONS CLIENT`;
     emailBody += `\n---------------------------------------`;
     emailBody += `\nNom: ${nom}`;
-    emailBody += `\nPrenom: ${prenom}`;
-    emailBody += `\nTelephone: ${telephone}`;
+    emailBody += `\nPrénom: ${prenom}`;
+    emailBody += `\nTéléphone: ${telephone}`;
     emailBody += `\nEmail: ${email}`;
     emailBody += `\n\n---------------------------------------`;
-    emailBody += `\nSERVICE DEMANDE`;
+    emailBody += `\nSERVICE DEMANDÉ`;
     emailBody += `\n---------------------------------------`;
     emailBody += `\nService: ${serviceLabels[service] || service}`;
 
@@ -57,10 +57,10 @@ export async function POST(request: Request) {
       emailBody += `\n\n---------------------------------------`;
       emailBody += `\nDETAILS DU VOYAGE`;
       emailBody += `\n---------------------------------------`;
-      emailBody += `\nDestination: ${destination || "Non specifiee"}`;
-      emailBody += `\nDate de depart: ${dateDepart || "Non specifiee"}`;
-      emailBody += `\nDate de retour: ${dateRetour || "Non specifiee"}`;
-      emailBody += `\nNombre de passagers: ${passengers || "Non specifie"}`;
+      emailBody += `\nDestination: ${destination || "Non spécifiée"}`;
+      emailBody += `\nDate de départ: ${dateDepart || "Non spécifiée"}`;
+      emailBody += `\nDate de retour: ${dateRetour || "Non spécifiée"}`;
+      emailBody += `\nNombre de passagers: ${passengers || "Non spécifié"}`;
     }
 
     if (message) {
@@ -71,7 +71,7 @@ export async function POST(request: Request) {
     }
 
     emailBody += `\n\n---------------------------------------`;
-    emailBody += `\nEnvoye depuis le site EGEL TRAVEL`;
+    emailBody += `\nEnvoyé depuis le site EGEL TRAVEL`;
 
     const GMAIL_USER = process.env.GMAIL_USER;
     const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD;
@@ -99,7 +99,7 @@ export async function POST(request: Request) {
 
     // Verify connection first
     await transporter.verify();
-    console.log("Connexion SMTP verifiee avec succes");
+    console.log("Connexion SMTP vérifiée avec succès");
 
     const info = await transporter.sendMail({
       from: `"EGEL TRAVEL - Site Web" <${GMAIL_USER}>`,
@@ -109,7 +109,7 @@ export async function POST(request: Request) {
       text: emailBody,
     });
 
-    console.log("Email envoye avec succes, messageId:", info.messageId);
+    console.log("Email envoyé avec succès, messageId:", info.messageId);
 
     return NextResponse.json({ success: true, method: "smtp", messageId: info.messageId });
   } catch (error: unknown) {

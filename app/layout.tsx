@@ -11,9 +11,9 @@ const _inter = Inter({
 export const metadata: Metadata = {
   title: "EGEL TRAVEL SARL | Voyagez l'esprit tranquille",
   description:
-    "EGEL TRAVEL SARL - Votre agence de voyage de confiance a Yaounde. Billetterie aerienne, assurance voyage, location de vehicules et accompagnement en immigration.",
+    "EGEL TRAVEL SARL - Votre agence de voyage de confiance à Yaoundé. Billetterie aérienne, assurance voyage, location de véhicules et accompagnement en immigration.",
   keywords:
-    "agence de voyage Yaounde, billet d'avion Cameroun, assurance voyage, immigration, location vehicule Cameroun",
+    "agence de voyage Yaoundé, billet d'avion Cameroun, assurance voyage, immigration, location véhicule Cameroun",
   icons: {
     icon: "/images/logo-egel.png",
     apple: "/images/logo-egel.png",

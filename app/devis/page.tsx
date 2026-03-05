@@ -7,7 +7,7 @@ import { DevisContent } from "./devis-content";
 export const metadata: Metadata = {
   title: "Demande de devis | EGEL TRAVEL SARL",
   description:
-    "Obtenez un devis personnalise pour votre voyage. Billetterie aerienne, assurance voyage, location de vehicules et accompagnement immigration.",
+    "Obtenez un devis personnalisé pour votre voyage. Billetterie aérienne, assurance voyage, location de véhicules et accompagnement immigration.",
 };
 
 export default function DevisPage() {
