@@ -56,7 +56,7 @@ export function Navbar() {
           <button
             onClick={toggleLocale}
             className="flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:border-accent hover:text-foreground"
-            aria-label={locale === "fr" ? "Switch to English" : "Passer en francais"}
+            aria-label={locale === "fr" ? "Switch to English" : "Passer en français"}
           >
             <Globe className="h-3.5 w-3.5" />
             {locale === "fr" ? "EN" : "FR"}
@@ -98,7 +98,7 @@ export function Navbar() {
               className="flex items-center gap-2 text-base font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               <Globe className="h-4 w-4" />
-              {locale === "fr" ? "English" : "Francais"}
+              {locale === "fr" ? "English" : "Français"}
             </button>
 
             <Button asChild className="mt-2 w-full bg-accent text-accent-foreground hover:bg-accent/90 font-semibold">

@@ -5,7 +5,7 @@ export const translations = {
     // Navbar
     nav: {
       home: "Accueil",
-      about: "A propos",
+      about: "À propos",
       services: "Services",
       contact: "Contact",
       cta: "Demander un devis",
@@ -16,15 +16,15 @@ export const translations = {
 
     // Hero
     hero: {
-      badge: "Votre agence de voyage de confiance a Yaounde",
+      badge: "Votre agence de voyage de confiance à Yaoundé",
       title: "Voyagez l'esprit tranquille",
       description:
-        "EGEL TRAVEL SARL accompagne vos projets de voyage avec transparence et serenite. Billetterie aerienne, assurance voyage, location de vehicules et accompagnement en immigration.",
+        "EGEL TRAVEL SARL accompagne vos projets de voyage avec transparence et sérénité. Billetterie aérienne, assurance voyage, location de véhicules et accompagnement en immigration.",
       cta: "Demander un devis",
       stats: [
         { value: "100+", label: "Clients satisfaits" },
         { value: "10+", label: "Destinations" },
-        { value: "2+", label: "Annees d'experience" },
+        { value: "2+", label: "Années d'expérience" },
         { value: "24/7", label: "Support client" },
       ],
     },
@@ -32,28 +32,28 @@ export const translations = {
     // About
     about: {
       tag: "Qui sommes-nous ?",
-      title: "Votre partenaire de voyage de confiance a Yaounde",
+      title: "Votre partenaire de voyage de confiance à Yaoundé",
       description1:
-        "EGEL TRAVEL SARL est une agence de voyage basee a Yaounde. Notre mission est de vous offrir un service professionnel et securise pour tous vos projets de deplacement. Nous accompagnons particuliers, familles, etudiants et entreprises avec la meme rigueur et le meme devouement.",
+        "EGEL TRAVEL SARL est une agence de voyage basée à Yaoundé. Notre mission est de vous offrir un service professionnel et sécurisé pour tous vos projets de déplacement. Nous accompagnons particuliers, familles, étudiants et entreprises avec la même rigueur et le même dévouement.",
       description2:
-        "Forts de notre expertise en billetterie aerienne, assurance voyage, location de vehicules et immigration, nous sommes votre guichet unique pour voyager l'esprit tranquille.",
-      experience: "Annees d'experience",
-      imageAlt: "Equipe EGEL TRAVEL",
+        "Forts de notre expertise en billetterie aérienne, assurance voyage, location de véhicules et immigration, nous sommes votre guichet unique pour voyager l'esprit tranquille.",
+      experience: "Années d'expérience",
+      imageAlt: "Équipe EGEL TRAVEL",
       values: [
         {
           title: "Engagement",
           description:
-            "Nous nous engageons a fournir un service d'excellence a chacun de nos clients.",
+            "Nous nous engageons à fournir un service d'excellence à chacun de nos clients.",
         },
         {
-          title: "Qualite",
+          title: "Qualité",
           description:
-            "Chaque detail compte. Nous selectionnons les meilleures options pour vos voyages.",
+            "Chaque détail compte. Nous sélectionnons les meilleures options pour vos voyages.",
         },
         {
-          title: "Ethique",
+          title: "Éthique",
           description:
-            "Transparence totale dans nos tarifs et nos demarches. Aucun frais cache.",
+            "Transparence totale dans nos tarifs et nos démarches. Aucun frais caché.",
         },
       ],
     },
@@ -61,61 +61,61 @@ export const translations = {
     // Services
     services: {
       tag: "Nos services",
-      title: "Des solutions completes pour tous vos voyages",
+      title: "Des solutions complètes pour tous vos voyages",
       description:
-        "Decouvrez notre gamme de services concus pour rendre chaque aspect de votre voyage simple, sur et agreable.",
+        "Découvrez notre gamme de services conçus pour rendre chaque aspect de votre voyage simple, sûr et agréable.",
       cta: "Demander un devis",
       items: [
         {
-          title: "Billetterie aerienne",
+          title: "Billetterie aérienne",
           description:
-            "Vente de billets pour toutes destinations avec accompagnement personnalise. Nous comparons les meilleures offres pour vous garantir les tarifs les plus competitifs.",
+            "Vente de billets pour toutes destinations avec accompagnement personnalisé. Nous comparons les meilleures offres pour vous garantir les tarifs les plus compétitifs.",
           features: [
-            "Toutes compagnies aeriennes",
+            "Toutes compagnies aériennes",
             "Meilleurs tarifs garantis",
-            "Accompagnement personnalise",
+            "Accompagnement personnalisé",
           ],
         },
         {
           title: "Assurance voyage",
           description:
-            "Couverture sante, annulation, bagages et assistance. Voyagez en toute serenite avec nos solutions d'assurance completes et adaptees.",
+            "Couverture santé, annulation, bagages et assistance. Voyagez en toute sérénité avec nos solutions d'assurance complètes et adaptées.",
           features: [
-            "Couverture sante internationale",
+            "Couverture santé internationale",
             "Assurance annulation",
             "Assistance 24h/24",
           ],
         },
         {
-          title: "Location de vehicules",
+          title: "Location de véhicules",
           description:
-            "Avec ou sans chauffeur pour deplacements professionnels ou personnels. Large gamme de vehicules adaptes a tous vos besoins.",
+            "Avec ou sans chauffeur pour déplacements professionnels ou personnels. Large gamme de véhicules adaptés à tous vos besoins.",
           features: [
             "Avec ou sans chauffeur",
-            "Large gamme de vehicules",
-            "Tarifs competitifs",
+            "Large gamme de véhicules",
+            "Tarifs compétitifs",
           ],
         },
         {
           title: "Immigration & Assistance",
           description:
-            "Accompagnement legal pour visas et demarches administratives, 100% conforme a la loi. Notre equipe d'experts simplifie vos procedures.",
+            "Accompagnement légal pour visas et démarches administratives, 100% conforme à la loi. Notre équipe d'experts simplifie vos procédures.",
           features: [
             "Demande de visa",
-            "Demarches administratives",
-            "100% conforme a la loi",
+            "Démarches administratives",
+            "100% conforme à la loi",
           ],
         },
         {
           title: "Service tourisme & Voyages",
           description:
-            "Nous concevons des experiences de voyage sur mesure adaptees aux particuliers, entreprises et clients VIP.",
+            "Nous concevons des expériences de voyage sur mesure adaptées aux particuliers, entreprises et clients VIP.",
           features: [
-            "Reservation de billets d'avions (National & international)",
-            "Organisation des sejours personalises",
+            "Réservation de billets d'avion (national & international)",
+            "Organisation des séjours personnalisés",
             "Voyages de groupe",
-            "Assistance visa et formalites administratives",
-            "Sejours VIP et premium",
+            "Assistance visa et formalités administratives",
+            "Séjours VIP et premium",
           ],
         },
         {
@@ -124,7 +124,7 @@ export const translations = {
             "Nous accompagnons nos clients dans la recherche, l'acquisition, la location et la valorisation de biens immobiliers.",
           features: [
             "Vente et achat de biens immobiliers",
-            "Location courte et longue duree",
+            "Location courte et longue durée",
             "Gestion locative",
             "Mise en relation avec investisseurs",
             "Conseil en investissement immobilier",
@@ -132,16 +132,16 @@ export const translations = {
           ],
         },
         {
-          title: "Service Evenementiel",
+          title: "Service Événementiel",
           description:
-            "Nous creons des evenements elegants, impactants et parfaitement orchestres.",
+            "Nous créons des événements élégants, impactants et parfaitement orchestrés.",
           features: [
-            "Evenements d'entreprise",
+            "Événements d'entreprise",
             "Lancements de produits",
-            "Seminaires et conferences",
-            "Soirees privees",
-            "Mariages et celebrations",
-            "Evenements premiums & VIP",
+            "Séminaires et conférences",
+            "Soirées privées",
+            "Mariages et célébrations",
+            "Événements premium & VIP",
           ],
         },
       ],
@@ -152,12 +152,12 @@ export const translations = {
       tag: "Contact",
       title: "Restons en contact",
       description:
-        "Notre equipe est a votre ecoute pour repondre a vos questions et vous accompagner dans vos projets de voyage. N'hesitez pas a nous contacter.",
+        "Notre équipe est à votre écoute pour répondre à vos questions et vous accompagner dans vos projets de voyage. N'hésitez pas à nous contacter.",
       whatsapp: "Contactez-nous sur WhatsApp",
-      mapTitle: "Localisation EGEL TRAVEL a Yaounde",
+      mapTitle: "Localisation EGEL TRAVEL à Yaoundé",
       info: {
-        address: { title: "Adresse", details: ["Yaounde, Cameroun"] },
-        phone: { title: "Telephone", details: ["+237 6XX XXX XXX"] },
+        address: { title: "Adresse", details: ["Yaoundé, Cameroun"] },
+        phone: { title: "Téléphone", details: ["+237 6XX XXX XXX"] },
         email: { title: "Email", details: ["contact@egel.cm"] },
         hours: {
           title: "Horaires",
@@ -170,14 +170,14 @@ export const translations = {
     footer: {
       tagline: "Voyagez l'esprit tranquille",
       description:
-        "EGEL TRAVEL SARL accompagne vos projets de voyage avec transparence et serenite. Votre agence de voyage de confiance a Yaounde, Cameroun.",
+        "EGEL TRAVEL SARL accompagne vos projets de voyage avec transparence et sérénité. Votre agence de voyage de confiance à Yaoundé, Cameroun.",
       navigation: "Navigation",
       servicesTitle: "Services",
-      copyright: "Tous droits reserves. Voyagez l'esprit tranquille.",
+      copyright: "Tous droits réservés. Voyagez l'esprit tranquille.",
       serviceLinks: [
-        "Billetterie aerienne",
+        "Billetterie aérienne",
         "Assurance voyage",
-        "Location de vehicules",
+        "Location de véhicules",
         "Immigration",
       ],
     },
@@ -189,66 +189,66 @@ export const translations = {
 
     // Devis
     devis: {
-      backLink: "< Retour a l'accueil",
+      backLink: "< Retour à l'accueil",
       tag: "Demande de devis",
-      title: "Obtenez votre devis personnalise",
+      title: "Obtenez votre devis personnalisé",
       description:
-        "Remplissez le formulaire ci-dessous et notre equipe vous contactera rapidement a",
-      descriptionEnd: "pour vous proposer la solution la plus adaptee a vos besoins.",
+        "Remplissez le formulaire ci-dessous et notre équipe vous contactera rapidement à",
+      descriptionEnd: "pour vous proposer la solution la plus adaptée à vos besoins.",
       steps: [
         {
           step: "01",
           title: "Remplissez le formulaire",
-          desc: "Indiquez vos besoins et la destination souhaitee",
+          desc: "Indiquez vos besoins et la destination souhaitée",
         },
         {
           step: "02",
           title: "Recevez votre devis",
-          desc: "Notre equipe vous envoie une proposition adaptee",
+          desc: "Notre équipe vous envoie une proposition adaptée",
         },
         {
           step: "03",
           title: "Confirmez et voyagez",
-          desc: "Validez votre reservation et preparez votre voyage",
+          desc: "Validez votre réservation et préparez votre voyage",
         },
       ],
       serviceOptions: [
-        { value: "billetterie", label: "Billetterie aerienne" },
+        { value: "billetterie", label: "Billetterie aérienne" },
         { value: "assurance", label: "Assurance voyage" },
-        { value: "location", label: "Location de vehicules" },
+        { value: "location", label: "Location de véhicules" },
         { value: "immigration", label: "Immigration & Assistance" },
         { value: "tourisme", label: "Tourisme & Voyages" },
         { value: "immobilier", label: "Immobilier" },
-        { value: "evenementiel", label: "Evenementiel" },
+        { value: "evenementiel", label: "Événementiel" },
       ],
       form: {
         nom: "Nom",
-        prenom: "Prenom",
-        telephone: "Telephone",
+        prenom: "Prénom",
+        telephone: "Téléphone",
         email: "Email",
-        service: "Service souhaite",
+        service: "Service souhaité",
         servicePlaceholder: "Choisissez un service",
         destination: "Destination",
-        destinationPlaceholder: "Ex: Paris, Dubai, New York...",
-        dateDepart: "Date de depart",
+        destinationPlaceholder: "Ex : Paris, Dubaï, New York...",
+        dateDepart: "Date de départ",
         dateRetour: "Date de retour",
         passengers: "Nombre de passagers",
         message: "Message",
-        messagePlaceholderTravel: "Decrivez votre projet de voyage...",
-        messagePlaceholderOther: "Decrivez votre demande en detail...",
+        messagePlaceholderTravel: "Décrivez votre projet de voyage...",
+        messagePlaceholderOther: "Décrivez votre demande en détail...",
         submit: "Envoyer ma demande",
         submitting: "Envoi en cours...",
-        requestSentTo: "Votre demande sera envoyee a",
+        requestSentTo: "Votre demande sera envoyée à",
         nomPlaceholder: "Votre nom",
-        prenomPlaceholder: "Votre prenom",
+        prenomPlaceholder: "Votre prénom",
       },
       success: {
-        title: "Demande envoyee avec succes !",
+        title: "Demande envoyée avec succès !",
         description:
-          "Merci pour votre demande. Notre equipe vous contactera rapidement a",
+          "Merci pour votre demande. Notre équipe vous contactera rapidement à",
         descriptionEnd: "pour vous proposer la meilleure solution.",
         newRequest: "Nouvelle demande",
-        backHome: "Retour a l'accueil",
+        backHome: "Retour à l'accueil",
       },
     },
   },
@@ -260,7 +260,7 @@ export const translations = {
       about: "About",
       services: "Services",
       contact: "Contact",
-      cta: "Get a quote",
+      cta: "Get a Quote",
       tagline: "Travel with peace of mind",
       openMenu: "Open menu",
       closeMenu: "Close menu",
@@ -271,8 +271,8 @@ export const translations = {
       badge: "Your trusted travel agency in Yaounde",
       title: "Travel with peace of mind",
       description:
-        "EGEL TRAVEL SARL supports your travel projects with transparency and serenity. Air ticketing, travel insurance, vehicle rental and immigration assistance.",
-      cta: "Get a quote",
+        "EGEL TRAVEL SARL supports your travel projects with transparency and serenity. Air ticketing, travel insurance, vehicle rental, and immigration assistance.",
+      cta: "Get a Quote",
       stats: [
         { value: "100+", label: "Satisfied clients" },
         { value: "10+", label: "Destinations" },
@@ -286,9 +286,9 @@ export const translations = {
       tag: "Who are we?",
       title: "Your trusted travel partner in Yaounde",
       description1:
-        "EGEL TRAVEL SARL is a travel agency based in Yaounde. Our mission is to offer you a professional and secure service for all your travel projects. We support individuals, families, students and businesses with the same rigor and dedication.",
+        "EGEL TRAVEL SARL is a travel agency based in Yaounde. Our mission is to offer you a professional and secure service for all your travel projects. We support individuals, families, students, and businesses with the same rigor and dedication.",
       description2:
-        "With our expertise in air ticketing, travel insurance, vehicle rental and immigration, we are your one-stop shop for traveling with peace of mind.",
+        "With our expertise in air ticketing, travel insurance, vehicle rental, and immigration, we are your one-stop shop for traveling with peace of mind.",
       experience: "Years of experience",
       imageAlt: "EGEL TRAVEL Team",
       values: [
@@ -312,11 +312,11 @@ export const translations = {
 
     // Services
     services: {
-      tag: "Our services",
+      tag: "Our Services",
       title: "Complete solutions for all your travels",
       description:
-        "Discover our range of services designed to make every aspect of your trip simple, safe and enjoyable.",
-      cta: "Get a quote",
+        "Discover our range of services designed to make every aspect of your trip simple, safe, and enjoyable.",
+      cta: "Get a Quote",
       items: [
         {
           title: "Air Ticketing",
@@ -331,7 +331,7 @@ export const translations = {
         {
           title: "Travel Insurance",
           description:
-            "Health coverage, cancellation, luggage and assistance. Travel with complete peace of mind with our comprehensive and tailored insurance solutions.",
+            "Health coverage, cancellation, luggage, and assistance. Travel with complete peace of mind with our comprehensive and tailored insurance solutions.",
           features: [
             "International health coverage",
             "Cancellation insurance",
@@ -341,9 +341,9 @@ export const translations = {
         {
           title: "Vehicle Rental",
           description:
-            "With or without driver for professional or personal travel. Wide range of vehicles adapted to all your needs.",
+            "With or without a driver for professional or personal travel. Wide range of vehicles adapted to all your needs.",
           features: [
-            "With or without driver",
+            "With or without a driver",
             "Wide range of vehicles",
             "Competitive rates",
           ],
@@ -361,9 +361,9 @@ export const translations = {
         {
           title: "Tourism & Travel",
           description:
-            "We design custom travel experiences for individuals, businesses and VIP clients.",
+            "We design custom travel experiences for individuals, businesses, and VIP clients.",
           features: [
-            "Flight booking (National & international)",
+            "Flight booking (national & international)",
             "Personalized stay organization",
             "Group travel",
             "Visa assistance and administrative formalities",
@@ -373,10 +373,10 @@ export const translations = {
         {
           title: "Real Estate",
           description:
-            "We support our clients in the search, acquisition, rental and enhancement of real estate properties.",
+            "We support our clients in the search, acquisition, rental, and enhancement of real estate properties.",
           features: [
             "Buying and selling real estate",
-            "Short and long term rental",
+            "Short- and long-term rental",
             "Property management",
             "Investor matchmaking",
             "Real estate investment advice",
@@ -386,7 +386,7 @@ export const translations = {
         {
           title: "Events",
           description:
-            "We create elegant, impactful and perfectly orchestrated events.",
+            "We create elegant, impactful, and perfectly orchestrated events.",
           features: [
             "Corporate events",
             "Product launches",
@@ -442,7 +442,7 @@ export const translations = {
     // Devis
     devis: {
       backLink: "< Back to home",
-      tag: "Quote request",
+      tag: "Quote Request",
       title: "Get your personalized quote",
       description:
         "Fill out the form below and our team will contact you quickly at",
@@ -474,8 +474,8 @@ export const translations = {
         { value: "evenementiel", label: "Events" },
       ],
       form: {
-        nom: "Last name",
-        prenom: "First name",
+        nom: "Last Name",
+        prenom: "First Name",
         telephone: "Phone",
         email: "Email",
         service: "Desired service",
