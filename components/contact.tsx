@@ -64,7 +64,7 @@ export function Contact() {
               className="mt-8 bg-[#25D366] text-[#ffffff] hover:bg-[#25D366]/90 font-semibold"
             >
               <a
-                href="https://wa.me/237000000000"
+                href="https://wa.me/237651470810"
                 target="_blank"
                 rel="noopener noreferrer"
               >

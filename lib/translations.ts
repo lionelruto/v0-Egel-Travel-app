@@ -157,7 +157,7 @@ export const translations = {
       mapTitle: "Localisation EGEL TRAVEL à Yaoundé",
       info: {
         address: { title: "Adresse", details: ["Yaoundé, Cameroun"] },
-        phone: { title: "Téléphone", details: ["+237 6XX XXX XXX"] },
+        phone: { title: "Téléphone", details: ["+237 651 470 810"] },
         email: { title: "Email", details: ["contact@egel.cm"] },
         hours: {
           title: "Horaires",
@@ -409,7 +409,7 @@ export const translations = {
       mapTitle: "EGEL TRAVEL location in Yaounde",
       info: {
         address: { title: "Address", details: ["Yaounde, Cameroon"] },
-        phone: { title: "Phone", details: ["+237 6XX XXX XXX"] },
+        phone: { title: "Phone", details: ["+237 651 470 810"] },
         email: { title: "Email", details: ["contact@egel.cm"] },
         hours: {
           title: "Hours",

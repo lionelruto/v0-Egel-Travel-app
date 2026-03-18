@@ -340,7 +340,7 @@ export function DevisContent() {
                     id="telephone"
                     name="telephone"
                     type="tel"
-                    placeholder="+237 6XX XXX XXX"
+                    placeholder="+237 651 470 810"
                     required
                     className="bg-background"
                   />
