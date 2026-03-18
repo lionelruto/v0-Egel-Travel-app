@@ -53,7 +53,7 @@ export function Hero() {
             className="border-primary-foreground/30 text-primary-foreground bg-transparent hover:bg-primary-foreground/10 text-base px-8"
           >
             <a
-              href="https://wa.me/237000000000"
+              href="https://wa.me/237651470810"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -128,7 +128,7 @@ export function QuoteForm() {
                   <Input
                     id="telephone"
                     type="tel"
-                    placeholder="+237 6XX XXX XXX"
+                    placeholder="+237 651 470 810"
                     required
                     className="bg-background"
                   />
