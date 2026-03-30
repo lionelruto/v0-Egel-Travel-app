@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { Facebook } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 
 export function Footer() {
@@ -52,6 +53,18 @@ export function Footer() {
             <p className="mt-4 max-w-sm text-sm text-primary-foreground/70 leading-relaxed">
               {t.footer.description}
             </p>
+            {/* Social Links */}
+            <div className="mt-6 flex items-center gap-4">
+              <a
+                href="https://www.facebook.com/share/1KfSvNuyam/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-foreground/10 text-primary-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                aria-label="Facebook"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
+            </div>
           </div>
 
           {/* Links */}
